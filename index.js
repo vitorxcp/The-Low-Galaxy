@@ -1,3 +1,9 @@
+ 	const express = require('express');
+	const app = express();
+	app.get('/', (request, response) => {
+		response.sendStatus(200);
+	});
+	app.listen(200);
 const { APIMessage, Message, Client, Collection } = require('discord.js')
 Message.prototype.quote = async function (content, options) {
   const message_reference = {
