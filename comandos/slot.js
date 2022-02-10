@@ -43,7 +43,7 @@ exports.run = async (bot, message, args) => {
         .setTimestamp()
         .setDescription("\n" + desg + "\n**-=[ " + mig1 + " | " + mig2 + " | `...` ]=-**\n" + desg + "\n")
       msg.edit(embed)
-    }, 500)
+    }, 200)
     setTimeout(() => {
       embed = new Discord.MessageEmbed()
         .setColor("BLACK")
@@ -51,7 +51,7 @@ exports.run = async (bot, message, args) => {
         .setTitle("Roleta da Sorte:")
         .setDescription("\n" + desg + "\n**-=[ " + mig1 + " | " + mig2 + " | " + mig3 + " ]=-**\n" + desg + "\n> "+gm)
       msg.edit(embed)
-    }, 1000)
+    }, 500)
     //}
   } else {
     const Discord = require("discord.js")
@@ -59,7 +59,7 @@ exports.run = async (bot, message, args) => {
       .setColor("BLUE")
       .setTimestamp()
       .setTitle("Roleta da Sorte!")
-      .setDescription("**Nesta Roleta você tem a chance de ganhar muitos *Galaxy's* dependendo da sua sorte ;3**\n\n> Para jogar use *`t.slot u`*! Cada rodada custa *`50`* Galaxy.")
+      .setDescription("**Nesta Roleta você tem a chance de ganhar muitos *Galaxy's* dependendo da sua sorte ;3**\n\n> Para jogar use *`t.slot u`*! Cada rodada custa *`50`* Galaxy.\n Querendo ver os preços de tudo? Então Utilize `t.slots`!")
     message.reply(" ", embed)
   }
 }
