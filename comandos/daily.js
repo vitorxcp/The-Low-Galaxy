@@ -3,6 +3,15 @@ exports.run = async(bot, message,args) => {
   const Discord = require("discord.js")
   const user = message.author
  const ms = require('parse-ms')
+   const ping = new Date();
+ping.setHours(ping.getHours() - 3);
+  const dia = ping.getDate();
+	const mes = ping.getMonth()+1;
+	const ano = ping.getFullYear();
+	const hora = ping.getHours();
+	const minutos = ping.getMinutes();
+	const segundos = ping.getSeconds();
+  data = "`"+dia+"/"+mes+"/"+ano+" ás "+(hora+":"+minutos)+"`"
   const ms2 = require("ms")
    const moment = require('moment');
 moment.locale('pt-BR');
@@ -16,7 +25,7 @@ let daily_time = db.fetch("user_"+message.author.id+".guild_"+message.guild.id+"
       embed = new Discord.MessageEmbed()
       .setColor("RED")
       .setTimestamp()
-      .setDescription("**-** Ops! Você poderá pegar o seu proximo *`Daily`* em exatamente **"+time+"**!\n\n> *Você pode pegar o `Daily` Diariamente ;3*")
+      .setDescription("<:xn:942904768144244776> | Ops! Você poderá pegar o seu proximo *`Daily`* em exatamente **"+time+"**!\n\n> *Você pode pegar o `Daily` Diariamente ;3*")
       message.reply(" ", embed)
     } else {
        let tem3 = db.fetch("user_"+message.author.id+".guild_"+message.guild.id+".compras.mpgalaxy")
@@ -31,6 +40,10 @@ let daily_time = db.fetch("user_"+message.author.id+".guild_"+message.guild.id+"
       message.reply(" ", embed)
       db.add("user_"+user.id+".guild_"+message.guild.id+".dinheiro.coins", total)
       db.set("user_"+user.id+".guild_"+message.guild.id+".timeout.daily", Date.now())
+      trns = db.fetch("user_"+message.author.id+".guild_"+message.guild.id+".transações")
+      if(trns) db.push("user_"+message.author.id+".guild_"+message.guild.id+".transações", "["+data+"] 🪙 `"+message.author.tag+"` ganhou **"+total+"** no `Daily`.")
+      if(!trns) db.set("user_"+message.author.id+".guild_"+message.guild.id+".transações", ["["+data+"] 🪙 `"+message.author.tag+"` ganhou **"+total+"** no `Daily`."])
+db.add("user_"+message.author.id+".guild_"+message.guild.id+".transações_size", 1)
     }
 }
 exports.help = {

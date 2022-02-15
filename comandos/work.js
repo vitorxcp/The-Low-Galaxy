@@ -1,6 +1,15 @@
 exports.run = async(bot, message,args) => {
     const db = require("quick.db")
   const Discord = require("discord.js")
+   const ping = new Date();
+ping.setHours(ping.getHours() - 3);
+  const dia = ping.getDate();
+	const mes = ping.getMonth()+1;
+	const ano = ping.getFullYear();
+	const hora = ping.getHours();
+	const minutos = ping.getMinutes();
+	const segundos = ping.getSeconds();
+  data = "`"+dia+"/"+mes+"/"+ano+" ás "+(hora+":"+minutos)+"`"
   const user = message.author
  const ms = require('parse-ms')
    let timeout = 28800000 
@@ -12,7 +21,7 @@ let daily_time = db.fetch("user_"+message.author.id+".guild_"+message.guild.id+"
       embed = new Discord.MessageEmbed()
       .setColor("RED")
       .setTimestamp()
-      .setDescription("**-** Ops! Você poderá trabalhar novamente em **"+time+"**!\n\n> *Você pode 'trabalhar' a cada 8 Horas ;3*")
+      .setDescription("<:xn:942904768144244776> | Ops! Você poderá trabalhar novamente em **"+time+"**!\n\n> *Você pode trabalhar a cada 8 Horas no dia!*")
       message.reply(" ", embed)
     } else {
        let tem3 = db.fetch("user_"+message.author.id+".guild_"+message.guild.id+".compras.mpgalaxy")
@@ -23,6 +32,10 @@ let daily_time = db.fetch("user_"+message.author.id+".guild_"+message.guild.id+"
       message.quote("✨ <@"+message.author+">, Você acabou de ganhar ***`"+total.toLocaleString()+"`* Galaxy** no seu trabalho! ✨"+multp+"")
       db.add("user_"+user.id+".guild_"+message.guild.id+".dinheiro.coins", total)
       db.set("user_"+user.id+".guild_"+message.guild.id+".timeout.work", Date.now())
+      trns = db.fetch("user_"+message.author.id+".guild_"+message.guild.id+".transações")
+      if(trns) db.push("user_"+message.author.id+".guild_"+message.guild.id+".transações", "["+data+"] 🪙 `"+message.author.tag+"` ganhou **"+total+"** no seu trabalho.")
+      if(!trns) db.set("user_"+message.author.id+".guild_"+message.guild.id+".transações", ["["+data+"] 🪙 `"+message.author.tag+"` ganhou **"+total+"** no seu trabalho."])
+db.add("user_"+message.author.id+".guild_"+message.guild.id+".transações_size", 1)
     }
 }
 exports.help = {

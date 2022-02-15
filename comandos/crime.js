@@ -2,6 +2,15 @@ exports.run = async(bot, message,args) => {
     const db = require("quick.db")
   const Discord = require("discord.js")
  const ms = require('parse-ms')
+   const ping = new Date();
+ping.setHours(ping.getHours() - 3);
+  const dia = ping.getDate();
+	const mes = ping.getMonth()+1;
+	const ano = ping.getFullYear();
+	const hora = ping.getHours();
+	const minutos = ping.getMinutes();
+	const segundos = ping.getSeconds();
+  data = "`"+dia+"/"+mes+"/"+ano+" ás "+(hora+":"+minutos)+"`"
   const ms2 = require("ms")
    const moment = require('moment');
 moment.locale('pt-BR');
@@ -41,6 +50,10 @@ let daily_time = db.fetch("user_"+message.author.id+".guild_"+message.guild.id+"
       db.add("user_"+message.author.id+".guild_"+message.guild.id+".dinheiro.coins", total)
         db.subtract("user_"+user.id+".guild_"+message.guild.id+".dinheiro.coins", total)
       db.set("user_"+message.author.id+".guild_"+message.guild.id+".timeout.crime", Date.now())
+        trns = db.fetch("user_"+message.author.id+".guild_"+message.guild.id+".transações")
+      if(trns) db.push("user_"+message.author.id+".guild_"+message.guild.id+".transações", "["+data+"] 🪙 `"+message.author.tag+"` roubou **"+total+"** de `"+user.tag+"`(`"+user.id+"`).")
+      if(!trns) db.set("user_"+message.author.id+".guild_"+message.guild.id+".transações", ["["+data+"] 🪙 `"+message.author.tag+"` roubou **"+total+"** de `"+user.tag+"`(`"+user.id+"`)."])
+db.add("user_"+message.author.id+".guild_"+message.guild.id+".transações_size", 1)
       } else {
          embed = new Discord.MessageEmbed()
         .setColor("BLUE")
@@ -51,6 +64,10 @@ let daily_time = db.fetch("user_"+message.author.id+".guild_"+message.guild.id+"
         db.subtract("user_"+message.author.id+".guild_"+message.guild.id+".dinheiro.coins", totaltirado)
         db.add("user_"+bot.user.id+".guild_"+message.guild.id+".dinheiro.coins", totaltirado)
       db.set("user_"+message.author.id+".guild_"+message.guild.id+".timeout.crime", Date.now())
+        trns = db.fetch("user_"+message.author.id+".guild_"+message.guild.id+".transações")
+      if(trns) db.push("user_"+message.author.id+".guild_"+message.guild.id+".transações", "["+data+"] 🪙 `"+message.author.tag+"` pagou **"+totaltirado+"** para sua fiança.")
+      if(!trns) db.set("user_"+message.author.id+".guild_"+message.guild.id+".transações", ["["+data+"] 🪙 `"+message.author.tag+"` pagou **"+totaltirado+"** para sua fiança."])
+db.add("user_"+message.author.id+".guild_"+message.guild.id+".transações_size", 1)
       }
     }
 }
