@@ -27,6 +27,15 @@ const disbut = require('discord.js-buttons')(bot);
 const fs = require('fs');
 const db = require("quick.db")
 const colors = require("colors")
+const ping = new Date();
+ping.setHours(ping.getHours() - 3);
+  const dia = ping.getDate();
+	const mes = ping.getMonth()+1;
+	const ano = ping.getFullYear();
+	const hora = ping.getHours();
+	const minutos = ping.getMinutes();
+	const segundos = ping.getSeconds();
+  data = "`"+dia+"/"+mes+"/"+ano+" ás "+(hora+":"+minutos)+"`"
 bot.commands = new Discord.Collection();
 bot.aliases = new Discord.Collection();
 fs.readdir('./comandos', (err, files, message) => {
@@ -72,7 +81,7 @@ bot.on("ready", () => {
 bot.on('clickButton', async (button) => {
     if(button.id === "del_s"){
       bot.channels.cache.get(db.fetch("del_channel_id")).messages.cache.get(db.fetch("del_msg_id")).delete()
-      button.channel.send("<@"+button.clicker.user.id+"> Você acabou de deletar todos os **Galaxy** de *`"+bot.users.cache.get(db.fetch("del_user")).tag+"`*!")
+      button.channel.send("<@"+button.clicker.user.id+"> Você acabou de deletar todas as informações de *`"+bot.users.cache.get(db.fetch("del_user")).tag+"`*!")
       db.delete("user_"+bot.users.cache.get(db.fetch("del_user")).id+"")
     }
    if(button.id === "del_n"){
@@ -92,8 +101,10 @@ bot.on('clickButton', async (button) => {
      db.add("user_"+bot.user.id+".guild_"+db.fetch("buy_arma_guild_id")+".dinheiro.coins", 20000)
     db.set("user_"+button.clicker.user.id+".guild_"+db.fetch("buy_arma_guild_id")+".compras.arma", "s")
         db.subtract("user_"+button.clicker.user.id+".guild_"+db.fetch("buy_arma_guild_id")+".dinheiro.coins", 20000)
-    //  db.delete("user_"+bot.users.cache.get(db.fetch("buy_user")).id+"")
-    }
+        trns = db.fetch("user_"+button.clicker.user.id+".guild_"+db.fetch("buy_arma_guild_id")+".transações")
+        if(trns) db.push("user_"+button.clicker.user.id+".guild_"+db.fetch("buy_arma_guild_id")+".transações", "["+data+"] 🪙 `"+button.clicker.user.tag+"` comprou uma arma por **20.000** Galaxy.")
+        if(!trns) db.set("user_"+button.clicker.user.id+".guild_"+db.fetch("buy_arma_guild_id")+".transações", ["["+data+"] 🪙 `"+button.clicker.user.tag+"` comprou uma arma por **20.000** Galaxy."])
+          }
    if(button.id === "buy_arma_n"){
  if(bot.channels.cache.get(db.fetch("buy_arma_channel_id")).messages.cache.get(db.fetch("buy_arma_msg_id"))) bot.channels.cache.get(db.fetch("buy_arma_channel_id")).messages.cache.get(db.fetch("buy_arma_msg_id")).delete()
       button.channel.send("<@"+button.clicker.user.id+"> Você acabou de cancelar a compra!")
@@ -112,7 +123,9 @@ bot.on('clickButton', async (button) => {
      db.add("user_"+bot.user.id+".guild_"+db.fetch("buy_mpgalaxy_guild_id")+".dinheiro.coins", 1000000)
     db.set("user_"+button.clicker.user.id+".guild_"+db.fetch("buy_mpgalaxy_guild_id")+".compras.mpgalaxy", "s")
         db.subtract("user_"+button.clicker.user.id+".guild_"+db.fetch("buy_mpgalaxy_guild_id")+".dinheiro.coins", 1000000)
-    //  db.delete("user_"+bot.users.cache.get(db.fetch("buy_user")).id+"")
+        trns = db.fetch("user_"+button.clicker.user.id+".guild_"+db.fetch("buy_arma_guild_id")+".transações")
+        if(trns) db.push("user_"+button.clicker.user.id+".guild_"+db.fetch("buy_arma_guild_id")+".transações", "["+data+"] 🪙 `"+button.clicker.user.tag+"` comprou o Multiplicador de Galaxy por **1.000.000** Galaxy.")
+        if(!trns) db.set("user_"+button.clicker.user.id+".guild_"+db.fetch("buy_arma_guild_id")+".transações", ["["+data+"] 🪙 `"+button.clicker.user.tag+"` comprou o Multiplicador de Galaxy por **1.000.000** Galaxy."])
     }
    if(button.id === "buy_mpgalaxy_n"){
  if(bot.channels.cache.get(db.fetch("buy_mpgalaxy_channel_id")).messages.cache.get(db.fetch("buy_mpgalaxy_msg_id"))) bot.channels.cache.get(db.fetch("buy_mpgalaxy_channel_id")).messages.cache.get(db.fetch("buy_mpgalaxy_msg_id")).delete()

@@ -107,22 +107,22 @@ db.add("user_"+message.author.id+".guild_"+message.guild.id+".transações_size"
     if(gm.includes(args[1])) {
       db.subtract("user_"+message.author.id+".guild_"+message.guild.id+".dinheiro.coins", valor)
       trns = db.fetch("user_"+message.author.id+".guild_"+message.guild.id+".transações")
-      if(trns) db.push("user_"+message.author.id+".guild_"+message.guild.id+".transações", "["+data+"] 🪙 `"+message.author.tag+"` perdeu **"+valor+"** para a `Roleta da Sorte`.")
-      if(!trns) db.set("user_"+message.author.id+".guild_"+message.guild.id+".transações", ["["+data+"] 🪙 `"+message.author.tag+"` perdeu **"+valor+"** para a `Roleta da Sorte`."])
+      if(trns) db.push("user_"+message.author.id+".guild_"+message.guild.id+".transações", "["+data+"] 🪙 `"+message.author.tag+"` perdeu **"+valor.toLocaleString()+"** para a `Roleta da Sorte`.")
+      if(!trns) db.set("user_"+message.author.id+".guild_"+message.guild.id+".transações", ["["+data+"] 🪙 `"+message.author.tag+"` perdeu **"+valor.toLocaleString()+"** para a `Roleta da Sorte`."])
       db.add("user_"+message.author.id+".guild_"+message.guild.id+".transações_size", 1)
     } 
       if(gm.includes((valor+300))) {
         db.add("user_"+message.author.id+".guild_"+message.guild.id+".dinheiro.coins", (valor+300))
         trns = db.fetch("user_"+message.author.id+".guild_"+message.guild.id+".transações")
-        if(trns) db.push("user_"+message.author.id+".guild_"+message.guild.id+".transações", "["+data+"] 🪙 `"+message.author.tag+"` ganhou **"+(valor+300)+"** na `Roleta da Sorte`.")
-        if(!trns) db.set("user_"+message.author.id+".guild_"+message.guild.id+".transações", ["["+data+"] 🪙 `"+message.author.tag+"` ganhou **"+(valor+300)+"** na `Roleta da Sorte`."])
+        if(trns) db.push("user_"+message.author.id+".guild_"+message.guild.id+".transações", "["+data+"] 🪙 `"+message.author.tag+"` ganhou **"+(valor+300).toLocaleString()+"** na `Roleta da Sorte`.")
+        if(!trns) db.set("user_"+message.author.id+".guild_"+message.guild.id+".transações", ["["+data+"] 🪙 `"+message.author.tag+"` ganhou **"+(valor+300).toLocaleString()+"** na `Roleta da Sorte`."])
         db.add("user_"+message.author.id+".guild_"+message.guild.id+".transações_size", 1)
       }
         if(gm.includes((valor*3))) {
           db.add("user_"+message.author.id+".guild_"+message.guild.id+".dinheiro.coins", (valor*3))
           trns = db.fetch("user_"+message.author.id+".guild_"+message.guild.id+".transações")
-          if(trns) db.push("user_"+message.author.id+".guild_"+message.guild.id+".transações", "["+data+"] 🪙 `"+message.author.tag+"` ganhou **"+(valor*3)+"** na `Roleta da Sorte`.")
-          if(!trns) db.set("user_"+message.author.id+".guild_"+message.guild.id+".transações", ["["+data+"] 🪙 `"+message.author.tag+"` ganhou **"+(valor*3)+"** na `Roleta da Sorte`."])
+          if(trns) db.push("user_"+message.author.id+".guild_"+message.guild.id+".transações", "["+data+"] 🪙 `"+message.author.tag+"` ganhou **"+(valor*3).toLocaleString()+"** na `Roleta da Sorte`.")
+          if(!trns) db.set("user_"+message.author.id+".guild_"+message.guild.id+".transações", ["["+data+"] 🪙 `"+message.author.tag+"` ganhou **"+(valor*3).toLocaleString()+"** na `Roleta da Sorte`."])
           db.add("user_"+message.author.id+".guild_"+message.guild.id+".transações_size", 1)
         }
     //embeds{

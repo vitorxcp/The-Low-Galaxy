@@ -16,7 +16,7 @@ if(user.id === message.author.id){
     embed.setDescription("<:perrolloros:921135593696669717> Vazio, igual a minha conta bancaria! <:perrolloros:921135593696669717>")
   }
   if(arma === "s"){
-    embed.addField("🔫 Arma", "> Esta arma dá `+ 15%` de chance de não ser pego pela policia!")
+    embed.addField("🔫 Arma", "> Esta arma dá `+15%` de chance de não ser pego pela policia!")
   }
   if(multp === "s"){
     embed.addField("✨ Multiplicador de Galaxy's", "> Este item dá `2x` mais Galaxy's nos comandos de economia!")

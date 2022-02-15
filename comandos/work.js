@@ -33,8 +33,8 @@ let daily_time = db.fetch("user_"+message.author.id+".guild_"+message.guild.id+"
       db.add("user_"+user.id+".guild_"+message.guild.id+".dinheiro.coins", total)
       db.set("user_"+user.id+".guild_"+message.guild.id+".timeout.work", Date.now())
       trns = db.fetch("user_"+message.author.id+".guild_"+message.guild.id+".transações")
-      if(trns) db.push("user_"+message.author.id+".guild_"+message.guild.id+".transações", "["+data+"] 🪙 `"+message.author.tag+"` ganhou **"+total+"** no seu trabalho.")
-      if(!trns) db.set("user_"+message.author.id+".guild_"+message.guild.id+".transações", ["["+data+"] 🪙 `"+message.author.tag+"` ganhou **"+total+"** no seu trabalho."])
+      if(trns) db.push("user_"+message.author.id+".guild_"+message.guild.id+".transações", "["+data+"] 🪙 `"+message.author.tag+"` ganhou **"+total.toLocaleString()+"** no seu trabalho.")
+      if(!trns) db.set("user_"+message.author.id+".guild_"+message.guild.id+".transações", ["["+data+"] 🪙 `"+message.author.tag+"` ganhou **"+total.toLocaleString()+"** no seu trabalho."])
 db.add("user_"+message.author.id+".guild_"+message.guild.id+".transações_size", 1)
     }
 }
