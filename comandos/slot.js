@@ -32,9 +32,9 @@ ping.setHours(ping.getHours() - 3);
     //Juntando tudo
     let tudo = (mig1+" - "+mig2+" - "+mig3)
     //Vendo se o user ganhou
-    let gm = "[😒] `-50` Galaxy."
-    if(tudo === "<a:emoji_34:917181658954862642> - <a:emoji_34:917181658954862642> - <a:emoji_34:917181658954862642>" | tudo === "<a:emoji_34:917181691179724850> - <a:emoji_34:917181691179724850> - <a:emoji_34:917181691179724850>") gm = "[✨] `+300` Galaxy."
-    if(tudo === "<a:fire_green:921842388266254468> - <a:fire_green:921842388266254468> - <a:fire_green:921842388266254468>" | tudo === "<a:fuegorojo:921845059689791528> - <a:fuegorojo:921845059689791528> - <a:fuegorojo:921845059689791528>") gm = "[✨] `+500` Galaxy."
+    let gm = "[😥] Perdeu `-50` Galaxy."
+    if(tudo === "<a:emoji_34:917181658954862642> - <a:emoji_34:917181658954862642> - <a:emoji_34:917181658954862642>" | tudo === "<a:emoji_34:917181691179724850> - <a:emoji_34:917181691179724850> - <a:emoji_34:917181691179724850>") gm = "[✨] Ganhou `+300` Galaxy."
+    if(tudo === "<a:fire_green:921842388266254468> - <a:fire_green:921842388266254468> - <a:fire_green:921842388266254468>" | tudo === "<a:fuegorojo:921845059689791528> - <a:fuegorojo:921845059689791528> - <a:fuegorojo:921845059689791528>") gm = "[✨] Ganhou `+500` Galaxy."
 //Dando e tirando dindin 
     if(gm.includes("50")) {
       db.subtract("user_"+message.author.id+".guild_"+message.guild.id+".dinheiro.coins", 50)
@@ -100,9 +100,9 @@ db.add("user_"+message.author.id+".guild_"+message.guild.id+".transações_size"
       if(!valor) return message.reply('Ops, você esqueceu de me fornecer o valor que queres apostar!')
     let tudo = (mig1+" - "+mig2+" - "+mig3)
     //Vendo se o user ganhou
-    let gm = "[😒] `-"+valor.toLocaleString()+"` Galaxy."
-    if(tudo === "<a:emoji_34:917181658954862642> - <a:emoji_34:917181658954862642> - <a:emoji_34:917181658954862642>" | tudo === "<a:emoji_34:917181691179724850> - <a:emoji_34:917181691179724850> - <a:emoji_34:917181691179724850>") gm = "[✨] `+"+(valor+300)+"` Galaxy."
-    if(tudo === "<a:fire_green:921842388266254468> - <a:fire_green:921842388266254468> - <a:fire_green:921842388266254468>" | tudo === "<a:fuegorojo:921845059689791528> - <a:fuegorojo:921845059689791528> - <a:fuegorojo:921845059689791528>") gm = "[✨] `+"+(valor*3)+"` Galaxy."
+    let gm = "[😥] Perdeu `-"+valor.toLocaleString()+"` Galaxy."
+    if(tudo === "<a:emoji_34:917181658954862642> - <a:emoji_34:917181658954862642> - <a:emoji_34:917181658954862642>" | tudo === "<a:emoji_34:917181691179724850> - <a:emoji_34:917181691179724850> - <a:emoji_34:917181691179724850>") gm = "[✨] Ganhou `+"+(valor+300)+"` Galaxy."
+    if(tudo === "<a:fire_green:921842388266254468> - <a:fire_green:921842388266254468> - <a:fire_green:921842388266254468>" | tudo === "<a:fuegorojo:921845059689791528> - <a:fuegorojo:921845059689791528> - <a:fuegorojo:921845059689791528>") gm = "[✨] Ganhou `+"+(valor*3)+"` Galaxy."
 //Dando e tirando dindin 
     if(gm.includes(args[1])) {
       db.subtract("user_"+message.author.id+".guild_"+message.guild.id+".dinheiro.coins", valor)

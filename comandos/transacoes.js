@@ -1,20 +1,20 @@
 exports.run = async (bot, message, args) => {
   const db = require("quick.db")
   const Discord = require("discord.js")
-  let user = message.mentions.users.first() || bot.users.cache.get(args[0]) || message.author
-const transações = db.fetch("user_"+user.id+".guild_"+message.guild.id+".transações")
+  let user2 = message.mentions.users.first() || bot.users.cache.get(args[0]) || message.author
+const transações = db.fetch("user_"+user2.id+".guild_"+message.guild.id+".transações")
   if(!transações){ 
   embed = new Discord.MessageEmbed()
-   if(user.id === message.author.id){
+   if(user2.id === message.author.id){
           embed.setTitle("Suas Transações no Bot:")
           embed.setDescription("<:perrolloros:921135593696669717> Vazio, igual a minha conta bancaria! <:perrolloros:921135593696669717>")
         } else {
-          embed.setTitle("Transações de `"+user.tag+"`:")
+          embed.setTitle("Transações de `"+user2.tag+"`:")
           embed.setDescription("<:perrolloros:921135593696669717> Vazio, igual a minha conta bancaria! <:perrolloros:921135593696669717>")
         }
   message.quote(embed)
   } else{
-    total = db.fetch("user_"+user.id+".guild_"+message.guild.id+".transações_size")
+    total = db.fetch("user_"+user2.id+".guild_"+message.guild.id+".transações_size")
    // console.log()
     if(!total) total = 0
     let i0 = 0;
@@ -30,15 +30,15 @@ const transações = db.fetch("user_"+user.id+".guild_"+message.guild.id+".trans
 
     let embed = new Discord.MessageEmbed()
       .setAuthor(
-        user.tag,
-       user.displayAvatarURL({ dynamic: true })
+        user2.tag,
+       user2.displayAvatarURL({ dynamic: true })
       )
       .setColor("GREEN")
       .setFooter(""+total+" Transações - Pagina "+page+"/"+Math.ceil(total / 10)+".")
-     if(user.id === message.author.id){
+     if(user2.id === message.author.id){
           embed.setTitle("Suas Transações no Bot:")
         } else {
-          embed.setTitle("Transações de `"+user.tag+"`:")
+          embed.setTitle("Transações de `"+user2.tag+"`:")
         }
           embed.setDescription(description);
 
@@ -77,10 +77,10 @@ const transações = db.fetch("user_"+user.id+".guild_"+message.guild.id+".trans
         embed
         .setColor("GREEN")
         .setFooter(""+total+" Transações - Pagina "+page+"/"+Math.ceil(total / 10)+".")
-        if(user.id === message.author.id){
+        if(user2.id === message.author.id){
           embed.setTitle("Suas Transações no Bot:")
         } else {
-          embed.setTitle("Transações de `"+user.tag+"`:")
+          embed.setTitle("Transações de `"+user2.tag+"`:")
         }
           embed.setDescription(description);
 
@@ -112,10 +112,10 @@ const transações = db.fetch("user_"+user.id+".guild_"+message.guild.id+".trans
         embed
         .setColor("GREEN")
         .setFooter(""+total+" Transações - Pagina "+page+"/"+Math.ceil(total / 10)+".")
-         if(user.id === message.author.id){
+         if(user2.id === message.author.id){
           embed.setTitle("Suas Transações no Bot:")
         } else {
-          embed.setTitle("Transações de `"+user.tag+"`:")
+          embed.setTitle("Transações de `"+user2.tag+"`:")
         }
           embed.setDescription(description);
 
@@ -126,5 +126,5 @@ const transações = db.fetch("user_"+user.id+".guild_"+message.guild.id+".trans
   
 }
 exports.help = {
-  name: "transaçoes", aliases:["transações"]
+  name: "transaçoes", aliases:["transações", "tran", "transacoes", "transacões"]
 }
